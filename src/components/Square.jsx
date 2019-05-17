@@ -14,4 +14,4 @@ const style = ({ size, position, color }) => {
     };
 };
 
-export default (props) => <div style={style(props)}/>
+export default (props) => <div style={style(props)}>{props.children}</div> 

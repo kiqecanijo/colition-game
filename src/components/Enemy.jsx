@@ -2,6 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { Square } from 'components';
 
 class Enemy extends Component {
+
+    constructor(props){
+      super(props)
+      this.state = {expresed : true}
+  }
+
     componentDidUpdate() {
         const { size, playerPosition, info: { top, left }} = this.props;
 
@@ -14,14 +20,25 @@ class Enemy extends Component {
         }
     }
 
-    render() {
-        const { size, info: { top, left }} = this.props;
+    componentDidMount(){
+      this.intervaId = setInterval(() => {
+          this.setState(prev => ({expresed: !prev.expresed }));
+        },500)
+      }
 
+    componentWillUnmount(){
+      clearInterval(this.intervaId)
+
+    }
+
+    render() {
+        const { size,side, info: { top, left }} = this.props;
         return (
             <Square
                 size={size}
                 position={{ top, left }}
-                color='firebrick' />
+                color={this.state.expresed ? 'green': 'gray' } >
+            {side}</Square>
         );
     }
 }

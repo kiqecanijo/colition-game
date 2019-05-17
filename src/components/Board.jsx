@@ -5,11 +5,11 @@ const style = (dimension) => {
     return {
         width: dim,
         height: dim,
-        border: '5px solid gray',
         position: 'relative',
         margin: '25px auto',
         overflow: 'hidden',
-        borderRadius: '5px'
+        borderRadius: '5px',
+        backgroundColor:'lightgreen'
     };
 };
 

@@ -13,13 +13,13 @@ class Player extends Component {
                 <Square
                     size={size}
                     position={{ top, left }}
-                    color='darkgray' />
+                    color='yellow' />
             </div>
 
         );
     }
 
-    
+
 }
 
 Player.propTypes = {

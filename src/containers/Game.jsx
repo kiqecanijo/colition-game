@@ -91,7 +91,7 @@ export default class Game extends Component {
                 break;
         }
 
-        return newEnemy;
+        return {...newEnemy,side};
     }
 
     handlePlayerMovement = (dirObj) => {
@@ -213,7 +213,7 @@ export default class Game extends Component {
         const { enemySpeed } = this.state;
 
         this.setState({
-            enemySpeed: parseFloat((enemySpeed + 0.25).toFixed(2))
+            enemySpeed: parseFloat((enemySpeed + 0.50).toFixed(2))
         });
     }
 
@@ -306,6 +306,7 @@ export default class Game extends Component {
                             <Enemy key={enemy.key}
                                 size={player}
                                 info={enemy}
+                                side={enemy.side}
                                 playerPosition={playerPos}
                                 onCollide={this.handlePlayerCollision} />
                         )
