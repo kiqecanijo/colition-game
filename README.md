@@ -1,2 +1,5 @@
-# colition-game
-Simple game colition built in react
+## Dodgy Game
+
+Game avoid squares
+
+based on this [repo](https://github.com/bbstilson/react-dodgy-game)
