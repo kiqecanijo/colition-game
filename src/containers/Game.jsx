@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { GameInfo, Board, Player, Enemy, DebugState } from 'components';
+import { GameInfo, Board, Player, Enemy, DebugState,Control } from 'components';
 import { UP, DOWN, LEFT, RIGHT } from 'helpers/constants';
 import { pluck } from 'helpers/utils';
 
@@ -313,6 +313,11 @@ export default class Game extends Component {
                 </Board>
                 {false && <p style={{ position: 'fixed', bottom: 0, left: 16 }}>Debug: <input type="checkbox" onChange={this.handleDebugToggle} ref={ n => this.debug = n }/></p>}
                 {this.state.debug && <DebugState data={this.state} />}
+              <Control
+                position={playerPos}
+                handlePlayerMovement={this.handlePlayerMovement} />
+
+
             </div>
         )
     }
