@@ -1,11 +1,5 @@
 import React, { PropTypes } from 'react';
-import styled from 'styled-components'
 
-const InfoArea = styled.div`
-  background-color: green;
-  border-radius: 10px;
-  
-`
 
 
 const GameInfo = ({
@@ -14,7 +8,7 @@ const GameInfo = ({
     highScore,
 }) => {
     return (
-        <InfoArea >
+        <div >
             <div >
                 <p>Time: {timeElapsed}</p>
                 <p>Score: {playerScore}</p>
@@ -22,7 +16,7 @@ const GameInfo = ({
             <div >
                 <p>High Score: {highScore}</p>
             </div>
-        </InfoArea>
+        </div>
     )
 }
 
