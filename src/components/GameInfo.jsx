@@ -1,34 +1,28 @@
 import React, { PropTypes } from 'react';
+import styled from 'styled-components'
 
-const style = () => {
-    return {
-        container: {
-            textAlign: 'center'
-        },
-        info: {
-            display: 'flex',
-            flexFlow: 'row nowrap',
-            justifyContent: 'space-around'
-        }
-    };
-};
+const InfoArea = styled.div`
+  background-color: green;
+  border-radius: 10px;
+  
+`
+
 
 const GameInfo = ({
     timeElapsed,
     playerScore,
     highScore,
 }) => {
-    const { container, info } = style();
     return (
-        <div style={container}>
-            <div style={info}>
+        <InfoArea >
+            <div >
                 <p>Time: {timeElapsed}</p>
                 <p>Score: {playerScore}</p>
             </div>
-            <div style={info}>
+            <div >
                 <p>High Score: {highScore}</p>
             </div>
-        </div>
+        </InfoArea>
     )
 }
 
