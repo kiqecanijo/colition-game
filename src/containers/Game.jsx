@@ -32,7 +32,8 @@ const getDefaultState = ({ boardSize, playerSize, highScore = 0 }) => {
         enemySpeed: 2,
         enemyIndex: 12,
         activeEnemies: 1,
-        baseScore: 10
+        baseScore: 10,
+        lifes: 3
     }
 };
 
@@ -126,7 +127,8 @@ export default class Game extends Component {
     }
 
     handlePlayerCollision = () => {
-        this.resetGame();
+        //this.setState(prev => {lifes: prev.lifes - 1 })
+        this.resetGame(this.state);
     }
 
     startGame = () => {
@@ -222,9 +224,9 @@ export default class Game extends Component {
         });
     }
 
-    resetGame = () => {
+    resetGame = (state) => {
         const { boardSize, playerSize } = this.props;
-        const { playerScore, highScore, globalHighScore, debug } = this.state;
+        const { playerScore, highScore, globalHighScore, debug } = state;
 
         // clear intervals
         clearInterval(this.gameInterval);
@@ -242,7 +244,8 @@ export default class Game extends Component {
             // persist debug state and high scores
             debug,
             highScore: playerScore > highScore ? playerScore : highScore,
-            globalHighScore
+            globalHighScore,
+
         });
         // restart game
         this.startGame();
@@ -283,7 +286,8 @@ export default class Game extends Component {
             playerScore,
             timeElapsed,
             highScore,
-            globalHighScore
+            globalHighScore,
+            lifes
         } = this.state;
 
         return (
@@ -292,6 +296,7 @@ export default class Game extends Component {
                     playerScore={playerScore}
                     timeElapsed={timeElapsed}
                     highScore={highScore}
+                    lifes={lifes}
                     globalHighScore={globalHighScore} />
 
                 <Board dimension={board * player}>

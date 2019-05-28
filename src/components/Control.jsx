@@ -57,7 +57,7 @@ class Control extends Component {
             <button style={{...buttonStyle,left:'70px'}} onClick={event => this.handleKeyDown({keyCode:38})}>{'^'}</button>
             <br/>
                 <button style={buttonStyle} onClick={event => this.handleKeyDown({keyCode:37})}>{'<'}</button>
-                <button style={buttonStyle} onClick={event => this.handleKeyDown({keyCode:40})}>{'...'}</button>
+                <button style={{...buttonStyle,transform:'rotate(180deg)'}} onClick={event => this.handleKeyDown({keyCode:40})}>{'^'}</button>
                 <button style={buttonStyle} onClick={event => this.handleKeyDown({keyCode:39})}>{'>'}</button>
 
             </div>

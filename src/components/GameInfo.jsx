@@ -11,12 +11,15 @@ const GameInfo = ({
     timeElapsed,
     playerScore,
     highScore,
+    lifes
 }) => {
     return (
       <div style={infoStyle}>
         <p>Time: {timeElapsed}</p>
         <p>Score: {playerScore}</p>
         <p>High Score: {highScore}</p>
+        <p>Lifes: {lifes}</p>
+
       </div>
     )
 }
