@@ -1,5 +1,10 @@
 import React, { PropTypes } from 'react';
 
+const infoStyle = {
+  color:'white',
+  fontSize: '20px',
+  fontFamily: 'sans-serif'
+}
 
 
 const GameInfo = ({
@@ -8,15 +13,11 @@ const GameInfo = ({
     highScore,
 }) => {
     return (
-        <div >
-            <div >
-                <p>Time: {timeElapsed}</p>
-                <p>Score: {playerScore}</p>
-            </div>
-            <div >
-                <p>High Score: {highScore}</p>
-            </div>
-        </div>
+      <div style={infoStyle}>
+        <p>Time: {timeElapsed}</p>
+        <p>Score: {playerScore}</p>
+        <p>High Score: {highScore}</p>
+      </div>
     )
 }
 

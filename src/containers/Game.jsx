@@ -29,9 +29,9 @@ const getDefaultState = ({ boardSize, playerSize, highScore = 0 }) => {
         playerScore: 0,
         highScore,
         timeElapsed: 0,
-        enemySpeed: 3,
+        enemySpeed: 2,
         enemyIndex: 12,
-        activeEnemies: 3,
+        activeEnemies: 1,
         baseScore: 10
     }
 };
@@ -201,11 +201,10 @@ export default class Game extends Component {
     }
 
     updateTimeAndScore = () => {
-        const { timeElapsed, playerScore, baseScore } = this.state;
-
+        const { timeElapsed, playerScore, baseScore,enemySpeed } = this.state;
         this.setState({
             timeElapsed: timeElapsed + 1,
-            playerScore: playerScore + baseScore,
+            playerScore: playerScore + baseScore * 0.1 * enemySpeed,
         });
     }
 

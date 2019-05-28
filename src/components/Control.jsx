@@ -4,9 +4,11 @@ import { UP, DOWN, LEFT, RIGHT } from 'helpers/constants'
 const buttonStyle = {
   color:'blue',
   backgroundColor:'transparent',
-  padding: '20px',
+  padding: '10px 0px',
+  textAlign:'center',
   border: '5px solid blue',
   fontWeight: 'bold',
+  fontSize: '30px',
   borderRadius: '10px',
   boxShadow: '0px 0px 10px blue',
   textShadow: '0px 0px 10px blue',
@@ -56,7 +58,6 @@ class Control extends Component {
             <br/>
                 <button style={buttonStyle} onClick={event => this.handleKeyDown({keyCode:37})}>{'<'}</button>
                 <button style={buttonStyle} onClick={event => this.handleKeyDown({keyCode:40})}>{'...'}</button>
-
                 <button style={buttonStyle} onClick={event => this.handleKeyDown({keyCode:39})}>{'>'}</button>
 
             </div>

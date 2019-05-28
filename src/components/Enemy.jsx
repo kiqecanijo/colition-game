@@ -11,10 +11,10 @@ class Enemy extends Component {
     componentDidUpdate() {
         const { size, playerPosition, info: { top, left }} = this.props;
 
-        if ( playerPosition.left < (left + size) - size/2 &&
-             playerPosition.top  < (top + size) - size/2  &&
-            (playerPosition.left + size) > left + size/2  &&
-            (playerPosition.top  + size) > top + size/2  )  {
+        if ( playerPosition.left < (left + size) - size/3 &&
+             playerPosition.top  < (top + size) - size/3  &&
+            (playerPosition.left + size) > left + size/3  &&
+            (playerPosition.top  + size) > top + size/3  )  {
 
             this.props.onCollide()
         }
