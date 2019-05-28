@@ -37,7 +37,7 @@ class Enemy extends Component {
             <Square
                 size={size}
                 position={{ top, left }}
-                color={this.state.expresed ? 'green': 'gray' } >
+                color={this.state.expresed ? 'red': 'yellow' } >
             {side}</Square>
         );
     }

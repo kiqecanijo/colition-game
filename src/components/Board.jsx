@@ -9,12 +9,17 @@ const style = (dimension) => {
         margin: '25px auto',
         overflow: 'hidden',
         borderRadius: '5px',
-        backgroundColor:'lightgreen'
+        backgroundColor:'black',
+        border: '10px solid red',
+        borderRadius: '10px',
+        boxShadow: '0px 0px 30px red'
+
     };
 };
 
 export default ({ dimension, children }) => (
     <div style={style(dimension)}>
         {children}
+
     </div>
 )

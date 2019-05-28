@@ -1,6 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import { UP, DOWN, LEFT, RIGHT } from 'helpers/constants'
 
+const buttonStyle = {
+  color:'blue',
+  backgroundColor:'transparent',
+  padding: '20px',
+  border: '5px solid blue',
+  fontWeight: 'bold',
+  borderRadius: '10px',
+  boxShadow: '0px 0px 10px blue',
+  textShadow: '0px 0px 10px blue',
+  position:'relative',
+  height: '50px',
+  width: '70px',
+
+}
+
 class Control extends Component {
   handleKeyDown = (e) => {
       let newDirection;
@@ -29,13 +44,15 @@ class Control extends Component {
         const {  position: { top, left }} = this.props;
 
         return (
-            <div>
-                <button onClick={event => this.handleKeyDown({keyCode:37})}>Left</button>
-                <button onClick={event => this.handleKeyDown({keyCode:39})}>Right</button>
-                <button onClick={event => this.handleKeyDown({keyCode:38})}>Up</button>
-                <button onClick={event => this.handleKeyDown({keyCode:40})}>Down</button>
+            <div style={{maxWidth:'210px',margin:'auto'}}>
+            <button style={{...buttonStyle,left:'70px'}} onClick={event => this.handleKeyDown({keyCode:38})}>{'^'}</button>
+            <br/>
+                <button style={buttonStyle} onClick={event => this.handleKeyDown({keyCode:37})}>{'<'}</button>
+                <button style={buttonStyle} onClick={event => this.handleKeyDown({keyCode:40})}>{'...'}</button>
 
-</div>
+                <button style={buttonStyle} onClick={event => this.handleKeyDown({keyCode:39})}>{'>'}</button>
+
+            </div>
 
         );
     }

@@ -10,8 +10,9 @@ const style = ({ size, position, color }) => {
         top: position.top + 'px',
         left: position.left + 'px',
         transition: 'all 0.1s ease',
-        borderRadius: '25%'
+        borderRadius: '25%',
+        boxShadow: `0px 0px 20px ${color}`
     };
 };
 
-export default (props) => <div style={style(props)}>{props.children}</div> 
+export default (props) => <div style={style(props)}>{props.children}</div>
