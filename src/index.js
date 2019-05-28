@@ -3,9 +3,11 @@ import { render } from 'react-dom';
 import { Game } from 'containers';
 
 const root = document.getElementById('root')
-const size = window.innerWidth
+const width = window.innerWidth
+const height = window.innerHeight
 
+const minor = width > height ? height : width
 
 render(
-    <Game boardSize={9} playerSize={size/20} />
+    <Game boardSize={8} playerSize={minor/10} />
 , root);
