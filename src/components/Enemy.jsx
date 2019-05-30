@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Square } from 'components';
+import ship1 from '../sprites/ship1.png'
+import ship2 from '../sprites/ship2.png'
+
 
 class Enemy extends Component {
 
@@ -35,9 +38,11 @@ class Enemy extends Component {
         const { size,side, info: { top, left }} = this.props;
         return (
             <Square
+                direction={side}
                 size={size}
                 position={{ top, left }}
-                color={this.state.expresed ? 'red': 'yellow' } >
+                sprite={this.state.expresed ? ship1: ship2 } >
+
             {side}</Square>
         );
     }

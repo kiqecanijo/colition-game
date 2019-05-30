@@ -1,17 +1,26 @@
-import React from 'react';
+import React from 'react'
 
-const style = ({ size, position, color }) => {
+
+
+const style = ({ size, position,sprite,direction = null }) => {
     const dim = size + 'px';
+    const rotation =
+      direction  == 'UP' && 270 ||
+      direction  == 'DOWN' && 90 ||
+      direction  == 'LEFT' && 180 ||
+      0
+
     return {
+        transform:`rotate(${rotation}deg)`,
         width: dim,
         height: dim,
-        backgroundColor: color,
+        backgroundImage: `url(${sprite})`,
+        backgroundSize: 'contain',
         position: 'absolute',
         top: position.top + 'px',
         left: position.left + 'px',
         transition: 'all 0.1s ease',
-        borderRadius: '25%',
-        boxShadow: `0px 0px 20px ${color}`
+        borderRadius: '50%',
     };
 };
 

@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Square } from 'components';
 import { UP, DOWN, LEFT, RIGHT } from 'helpers/constants'
+import jaguar from '../sprites/jaguar.png'
+
+
 
 class Player extends Component {
 
@@ -13,6 +16,7 @@ class Player extends Component {
                 <Square
                     size={size}
                     position={{ top, left }}
+                    sprite={jaguar}
                     color='white' />
             </div>
 
