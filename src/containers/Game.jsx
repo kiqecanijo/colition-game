@@ -4,12 +4,8 @@ import { GameInfo, Board, Player, Enemy, DebugState,Control } from 'components';
 import { UP, DOWN, LEFT, RIGHT } from 'helpers/constants';
 import { pluck } from 'helpers/utils';
 
-/*
-    Since my api key is not publicly available,
-    cloned versions will lack the ability to post
-    new high scores.
-*/
-// import url from 'api';
+
+const timeRespawn = 2000
 
 const getDefaultState = ({ boardSize, playerSize, highScore = 0 }) => {
     const half = Math.floor(boardSize / 2) * playerSize;
@@ -33,7 +29,11 @@ const getDefaultState = ({ boardSize, playerSize, highScore = 0 }) => {
         enemyIndex: 12,
         activeEnemies: 1,
         baseScore: 10,
-        lifes: 3
+        lifes: 3,
+        colidable: true,
+        user:{
+          score:false,
+        }
     }
 };
 
@@ -127,8 +127,10 @@ export default class Game extends Component {
     }
 
     handlePlayerCollision = () => {
-        //this.setState(prev => {lifes: prev.lifes - 1 })
-        this.resetGame(this.state);
+        this.state.colidable && this.resetGame({...this.state,lifes: this.state.lifes - 1,colidable: false});
+
+        setTimeout( () => this.setState({colidable: true}) ,timeRespawn)
+
     }
 
     startGame = () => {
@@ -226,7 +228,7 @@ export default class Game extends Component {
 
     resetGame = (state) => {
         const { boardSize, playerSize } = this.props;
-        const { playerScore, highScore, globalHighScore, debug } = state;
+        const { playerScore, highScore, globalHighScore, debug,lifes,colidable } = state;
 
         // clear intervals
         clearInterval(this.gameInterval);
@@ -237,19 +239,24 @@ export default class Game extends Component {
         if (playerScore > globalHighScore) {
             this.updateGlobalHighScore(playerScore);
         }
-
         // reset state
-        this.setState({
+        /*this.setState({
             ...getDefaultState({ boardSize , playerSize, highScore }),
             // persist debug state and high scores
             debug,
             highScore: playerScore > highScore ? playerScore : highScore,
             globalHighScore,
+            lifes
+        });*/
 
+        this.setState({
+            // persist debug state and high scores
+
+            lifes,
+            colidable
         });
         // restart game
         this.startGame();
-
     }
 
     handleDebugToggle = () => {
@@ -299,25 +306,29 @@ export default class Game extends Component {
                     lifes={lifes}
                     globalHighScore={globalHighScore} />
 
-                <Board dimension={board * player}>
-                    <Player
-                        size={player}
-                        position={playerPos}
-                        handlePlayerMovement={this.handlePlayerMovement} />
+                {!this.state.user.score &&
+                this.state.lifes > 0 &&
 
-                    {
-                        this.state.positions.enemies.map(enemy =>
-                            <Enemy key={enemy.key}
-                                size={player}
-                                info={enemy}
-                                side={enemy.side}
-                                playerPosition={playerPos}
-                                onCollide={this.handlePlayerCollision} />
-                        )
-                    }
-                </Board>
-                {false && <p style={{ position: 'fixed', bottom: 0, left: 16 }}>Debug: <input type="checkbox" onChange={this.handleDebugToggle} ref={ n => this.debug = n }/></p>}
-                {this.state.debug && <DebugState data={this.state} />}
+                  <Board dimension={board * player}>
+                      <Player
+                          size={player}
+                          position={playerPos}
+                          handlePlayerMovement={this.handlePlayerMovement} />
+
+                      {
+                          this.state.positions.enemies.map(enemy =>
+                              <Enemy key={enemy.key}
+                                  size={player}
+                                  info={enemy}
+                                  side={enemy.side}
+                                  playerPosition={playerPos}
+                                  onCollide={this.handlePlayerCollision} />
+                          )
+                      }
+                  </Board>
+
+                }
+
               <Control
                 position={playerPos}
                 handlePlayerMovement={this.handlePlayerMovement} />
