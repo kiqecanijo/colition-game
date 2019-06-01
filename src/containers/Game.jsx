@@ -265,19 +265,6 @@ export default class Game extends Component {
         });
     }
 
-    fetchGlobalHighScore = () => {
-        // axios.get(url)
-        //     .then(data => {
-        //         this.setState({
-        //             globalHighScore: data.data.fields.global_high_score
-        //         })
-        //     })
-        //     .catch(err => console.warn(err))
-    }
-
-    updateGlobalHighScore = (highScore) => {
-    }
-
     style = () => {
         return {
             width: '85%',
@@ -313,6 +300,7 @@ export default class Game extends Component {
                       <Player
                           size={player}
                           position={playerPos}
+                          colidable={this.state.colidable}
                           handlePlayerMovement={this.handlePlayerMovement} />
 
                       {
@@ -340,7 +328,6 @@ export default class Game extends Component {
 
     componentDidMount() {
         this.startGame();
-        this.fetchGlobalHighScore();
     }
 
     componentWillUnmount() {

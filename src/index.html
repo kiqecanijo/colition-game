@@ -7,14 +7,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito:600,800,900" rel="stylesheet">
 
 </head>
 <body>
 
-  <style media="screen">
+  <style>
     button:focus{
       outline: none;
   }
+
+  @keyframes flickerAnimation {
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-o-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-moz-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  @-webkit-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+  .animate-flicker {
+     -webkit-animation: flickerAnimation .2s infinite;
+     -moz-animation: flickerAnimation .2s infinite;
+     -o-animation: flickerAnimation .2s infinite;
+      animation: flickerAnimation .2s infinite;
+  }
+
+
   </style>
 
   <div id="root"></div>
@@ -110,7 +140,7 @@
     vy = rv * sy;
     h = rand(360);
     l = 0;
-    ttl = randIn(10,100);
+    ttl = randIn(70,100);
 
     positions[i] = x;
     positions[iy] = y;
@@ -131,19 +161,20 @@
     vy = velocities[iy];
     tx = x + vx;
     ty = y + vy;
-    vx *= 1.05;
-    vy *= 1.05;
+
+    //speed
+    vx *= 1.01;
+    vy *= 1.01;
     h = hues[0.5 * i | 0];
     l = lifeSpans[i];
     ttl = lifeSpans[iy];
     dl = fadeIn(l, ttl);
-    c = `hsla(${h},20%,80%,1)`;
-
+    c = `hsla(${h},10%,100%,1)`;
     l++;
 
     ctx.a.save();
     ctx.a.lineWidth = dl;
-    ctx.a.lineCap = 'round';
+    ctx.a.lineCap = 'square';
     ctx.a.strokeStyle = c;
     ctx.a.beginPath();
     ctx.a.moveTo(x, y);
@@ -157,28 +188,24 @@
     velocities[i] = vx;
     velocities[iy] = vy;
     lifeSpans[i] = l;
-
     checkBounds(x, y) && resetStar(i);
   }
 
   function draw() {
     ctx.a.clearRect(0,0,canvas.a.width,canvas.a.height);
     ctx.b.clearRect(0,0,canvas.b.width,canvas.b.height);
-
     ctx.b.fillStyle = 'rgba(0,0,0,1)';
     ctx.b.fillRect(0,0,canvas.b.width,canvas.b.height);
 
     let i;
-
     for (i = 0; i < starCount * 2; i += 2) {
       drawStar(i);
     }
 
     ctx.b.save();
-    ctx.b.filter = 'blur(10px)';
+    ctx.b.filter = 'blur(1px)';
     ctx.b.drawImage(canvas.a, 0, 0);
     ctx.b.restore();
-
     ctx.b.save();
     ctx.b.globalCompositeOperation = 'lighter';
     ctx.b.drawImage(canvas.a, 0, 0);
@@ -195,6 +222,10 @@
   canvas{
     z-index: -99
   }
+  .gold {
+    color: gold
+  }
+
 </style>
 </body>
 </html>
