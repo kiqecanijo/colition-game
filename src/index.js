@@ -23,9 +23,6 @@ max-width: 800px;
 margin:auto;
 color:white
 `
-
-
-
 const encode = data => {
   return btoa(JSON.stringify(data))
 }
@@ -74,53 +71,8 @@ class Engine extends Component {
   render () {
     return (
       <Div>
-      <img src={careful} />
 
-      <p>
-      ¡Descubre a Jaguarete con el menor número de <br/>
-movimientos posibles!<br/><br/>
-            <b>¿Estás listo para el reto?</b>
-          </p>
-          <Places>
-            <p className={'gold'}>Primer lugar:</p>
-          </Places>
-          <Places>
-            <p className={'gold'}>Segundo lugar:</p>
-          </Places><Places>
-            <p className={'gold'}>Tercer lugar:</p>
-          </Places>
-          <Places>
-            <p>Certificado de regalo con
-$500 en una prestigiada
-tienda departamental y
-NutriBaby 3 Stick Pack</p>
-          </Places>
-          <Places>
-
-            <p>Certificado de regalo
-con $300 en una
-prestigiada tienda
-departamental y
-NutriBaby 3 Stick Pack</p>
-          </Places>
-          <Places>
-
-            <p>Kit deportivo y
-NutriBaby 3
-Stick Pack</p>
-          </Places>
-      {!this.state.user &&
-        <FacebookLogin
-        appId="2372801119674024"
-        autoLoad={false}
-        textButton={'Ingresa con facebook'}
-        fields="name,email,picture"
-        isMobile={false}
-        callback={this.responseFacebook.bind(this)}
-        style={{backgroundColor:'white',borderRadius:'50%'}}
-   />
-      }
-      {this.state.user && <Game boardSize={8} playerSize={minor / 10} />}
+      {!this.state.user && <Game boardSize={8} playerSize={minor / 10} />}
       </Div>
     )
   }
