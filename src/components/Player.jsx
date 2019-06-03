@@ -4,9 +4,6 @@ import { UP, DOWN, LEFT, RIGHT } from 'helpers/constants'
 import jaguar from '../sprites/jaguar.png'
 
 class Player extends Component {
-  componentDidUpdate () {
-    console.log(this.props.colidable)
-  }
   render () {
     const { size, colidable, position: { top, left } } = this.props
 
