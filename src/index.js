@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Game } from 'containers'
 import FacebookLogin from 'react-facebook-login'
-import {Intro} from 'components'
-
+import {Intro,Form} from 'components'
 
 const encode = data => {
   return btoa(JSON.stringify(data))
@@ -37,21 +36,21 @@ class Engine extends Component {
     })
     .then(res => res.json())
     .then(res => {
-      console.log(res)
       this.setState({ user: res })
     })
   }
 
   state = {
     user: false,
-    ready: false
+    ready: false,
+    data: false
   }
 
   render () {
     return (
       <div>
-        <Intro>
         {!this.state.user &&
+          <Intro>
           <FacebookLogin
             appId="2372801119674024"
             autoLoad={false}
@@ -60,9 +59,12 @@ class Engine extends Component {
             isMobile={false}
             callback={this.responseFacebook.bind(this)}
             />
+        </Intro>}
+
+        {this.state.user 
+          /*<Game boardSize={8} playerSize={minor / 10} />*/
         }
-      </Intro>
-        {this.state.user && <Game boardSize={8} playerSize={minor / 10} />}
+        <Form/>
       </div>
     )
   }

@@ -10,7 +10,7 @@ width:30%;
 vertical-align:top;
 font-size:20px;
 font-weight: 600;
-font-size:20px
+font-size:18px
 `
 const Div = styled.div`
 padding: 0px;
@@ -20,13 +20,14 @@ margin:auto;
 color:white;
 font-family: Nunito;
 font-weight:600;
-font-size:25px
+font-size:23px;
+line-height: 25px;
 `
 
 const Intro = props => {
   return(
     <Div>
-      <img src={careful} />
+      <img style={{width:'300px'}} src={careful} />
 
       <p>
         ¡Descubre a Jaguarete con el menor número de <br/>
@@ -62,7 +63,8 @@ const Intro = props => {
     Stick Pack</p>
 </Places>
 {props.children}
-<img src={padre} />
+<br/>
+<img  style={{width:'550px'}} src={padre} />
 
 </Div>
 )
