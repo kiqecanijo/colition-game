@@ -50,7 +50,6 @@ class Engine extends Component {
   render () {
     return (
       <div>
-
         <Intro>
         {!this.state.user &&
           <FacebookLogin
@@ -60,7 +59,6 @@ class Engine extends Component {
             fields="name,email,picture"
             isMobile={false}
             callback={this.responseFacebook.bind(this)}
-            style={{backgroundColor:'white',borderRadius:'50%'}}
             />
         }
       </Intro>

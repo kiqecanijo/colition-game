@@ -14,7 +14,7 @@
 
   <style>
 
-  
+
 
     button:focus{
       outline: none;
@@ -85,7 +85,7 @@
       b: document.createElement("canvas")
     };
     canvas.b.style = `
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -213,7 +213,6 @@
     ctx.b.globalCompositeOperation = 'lighter';
     ctx.b.drawImage(canvas.a, 0, 0);
     ctx.b.restore();
-
     window.requestAnimationFrame(draw);
   }
 
