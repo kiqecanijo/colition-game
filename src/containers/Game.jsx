@@ -5,7 +5,7 @@ import { UP, DOWN, LEFT, RIGHT } from 'helpers/constants';
 import { pluck } from 'helpers/utils';
 
 
-const timeRespawn = 2000
+const timeRespawn = 200000
 
 const getDefaultState = ({ boardSize, playerSize, highScore = 0 }) => {
     const half = Math.floor(boardSize / 2) * playerSize;
@@ -267,8 +267,8 @@ export default class Game extends Component {
 
     style = () => {
         return {
-            width: '85%',
-            maxWidth: '600px',
+            width: '95%',
+            maxWidth: '1200px',
             margin: '0 auto'
         };
     }

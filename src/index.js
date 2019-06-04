@@ -3,22 +3,28 @@ import { render } from 'react-dom'
 import { Game } from 'containers'
 import FacebookLogin from 'react-facebook-login'
 import {Intro,Form} from 'components'
+import {entrypoint,encode,cleanText} from 'Utils'
+import styled from 'styled-components'
 
-const encode = data => {
-  return btoa(JSON.stringify(data))
-}
-const cleanText = text => {
-  return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-}
-
-const entrypoint = 'https://centralmedia.com.mx/facebook/cliente-nutribaby/jaguarete/entrypoint.php'
 const root = document.getElementById('root')
 const width = window.innerWidth
 const height = window.innerHeight
 
 const minor = width > height ? height : width
 
+const Div = styled.div`
+  text-align:center;
+
+`
+
 class Engine extends Component {
+
+  state = {
+    user: false,
+    ready: false,
+    data: false
+  }
+
   responseFacebook (res) {
     res.id && fetch(entrypoint, {
       method: 'POST',
@@ -40,15 +46,13 @@ class Engine extends Component {
     })
   }
 
-  state = {
-    user: false,
-    ready: false,
-    data: false
+  handleFormResponse(res){
+    this.setState(prev => ({data:res}),event => console.log(this.state))
   }
 
   render () {
     return (
-      <div>
+      <Div>
         {!this.state.user &&
           <Intro>
           <FacebookLogin
@@ -59,13 +63,14 @@ class Engine extends Component {
             isMobile={false}
             callback={this.responseFacebook.bind(this)}
             />
+
+
         </Intro>}
 
-        {this.state.user 
-          /*<Game boardSize={8} playerSize={minor / 10} />*/
-        }
-        <Form/>
-      </div>
+
+        {this.state.user && !this.state.user.phone && !this.state.data && <Form formResponse={this.handleFormResponse.bind(this)} user={this.state.user}/>}
+        {this.state.user && this.state.user.phone && <Game boardSize={8} playerSize={minor / 10} />}
+      </Div>
     )
   }
 }

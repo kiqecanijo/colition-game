@@ -27,7 +27,7 @@ line-height: 25px;
 const Intro = props => {
   return(
     <Div>
-      <img style={{width:'300px'}} src={careful} />
+      <img style={{maxWidth:'300px',width:'100%'}} src={careful} />
 
       <p>
         ¡Descubre a Jaguarete con el menor número de <br/>
@@ -64,7 +64,7 @@ const Intro = props => {
 </Places>
 {props.children}
 <br/>
-<img  style={{width:'550px'}} src={padre} />
+<img  style={{maxWidth:'550px',width:'100%'}} src={padre} />
 
 </Div>
 )
