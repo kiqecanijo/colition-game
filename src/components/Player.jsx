@@ -6,7 +6,6 @@ import jaguar from '../sprites/jaguar.png'
 class Player extends Component {
   render () {
     const { size, colidable, position: { top, left } } = this.props
-
     return (
       <div ref={ n => { this.player = n }} className={!colidable ? 'animate-flicker' : 'noa nimated'} >
         <Square
@@ -15,7 +14,6 @@ class Player extends Component {
           sprite={jaguar}
           color='white' />
       </div>
-
     )
   }
 }

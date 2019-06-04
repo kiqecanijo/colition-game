@@ -7,6 +7,7 @@ display:inline-block;
 position: relative;
 text-align:center;
 width:30%;
+min-width: 150px;
 vertical-align:top;
 font-size:20px;
 font-weight: 600;
@@ -34,22 +35,16 @@ const Intro = props => {
       movimientos posibles!<br/><br/>
     <b>¿Estás listo para el reto?</b>
   </p>
-  <Places>
-    <p className={'gold'}>Primer lugar:</p>
-  </Places>
-  <Places>
-    <p className={'gold'}>Segundo lugar:</p>
-  </Places><Places>
-  <p className={'gold'}>Tercer lugar:</p>
-</Places>
+
 <Places>
+  <p className={'gold'}>Primer lugar:</p>
   <p>Certificado de regalo con
     $500 en una prestigiada
     tienda departamental y
     NutriBaby 3 Stick Pack</p>
 </Places>
 <Places>
-
+  <p className={'gold'}>Segundo lugar:</p>
   <p>Certificado de regalo
     con $300 en una
     prestigiada tienda
@@ -57,7 +52,7 @@ const Intro = props => {
     NutriBaby 3 Stick Pack</p>
 </Places>
 <Places>
-
+  <p className={'gold'}>Tercer lugar:</p>
   <p>Kit deportivo y
     NutriBaby 3
     Stick Pack</p>

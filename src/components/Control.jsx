@@ -15,7 +15,6 @@ const buttonStyle = {
   position:'relative',
   height: '50px',
   width: '70px',
-
 }
 
 window.addEventListener("keydown", function(e) {
@@ -28,7 +27,6 @@ window.addEventListener("keydown", function(e) {
 class Control extends Component {
   handleKeyDown = (e) => {
       let newDirection;
-
       switch(e.keyCode) {
             case 37:
                 newDirection = { top: 0, left: -1 , dir: LEFT};
@@ -45,23 +43,18 @@ class Control extends Component {
             default:
                 return;
         }
-
         this.props.handlePlayerMovement(newDirection);
     }
-
     render() {
         const {  position: { top, left }} = this.props;
-
         return (
             <div style={{maxWidth:'210px',margin:'auto'}}>
-            <button style={{...buttonStyle,left:'70px'}} onClick={event => this.handleKeyDown({keyCode:38})}>{'^'}</button>
+            <button style={{...buttonStyle,left:'0px'}} onClick={event => this.handleKeyDown({keyCode:38})}>{'^'}</button>
             <br/>
                 <button style={buttonStyle} onClick={event => this.handleKeyDown({keyCode:37})}>{'<'}</button>
                 <button style={{...buttonStyle,transform:'rotate(180deg)'}} onClick={event => this.handleKeyDown({keyCode:40})}>{'^'}</button>
                 <button style={buttonStyle} onClick={event => this.handleKeyDown({keyCode:39})}>{'>'}</button>
-
             </div>
-
         );
     }
 

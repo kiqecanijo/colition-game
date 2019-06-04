@@ -5,7 +5,7 @@ import { UP, DOWN, LEFT, RIGHT } from 'helpers/constants';
 import { pluck } from 'helpers/utils';
 
 
-const timeRespawn = 200000
+const timeRespawn = 2000
 
 const getDefaultState = ({ boardSize, playerSize, highScore = 0 }) => {
     const half = Math.floor(boardSize / 2) * playerSize;
@@ -140,9 +140,9 @@ export default class Game extends Component {
     }
 
     updateGame = () => {
-        const { timeElapsed } = this.state;
+        const { timeElapsed,lifes } = this.state;
 
-        this.updateTimeAndScore();
+        lifes > 0 && this.updateTimeAndScore();
 
         if (timeElapsed > 0) {
 
@@ -286,12 +286,12 @@ export default class Game extends Component {
 
         return (
             <div style={this.style()}>
-                <GameInfo
+                {this.state.lifes > 0 && <GameInfo
                     playerScore={playerScore}
                     timeElapsed={timeElapsed}
                     highScore={highScore}
                     lifes={lifes}
-                    globalHighScore={globalHighScore} />
+                    globalHighScore={globalHighScore} />}
 
                 {!this.state.user.score &&
                 this.state.lifes > 0 &&
@@ -317,9 +317,9 @@ export default class Game extends Component {
 
                 }
 
-              <Control
+              {this.state.lifes > 0 && <Control
                 position={playerPos}
-                handlePlayerMovement={this.handlePlayerMovement} />
+                handlePlayerMovement={this.handlePlayerMovement} />}
 
 
             </div>

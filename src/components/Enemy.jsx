@@ -38,7 +38,6 @@ class Enemy extends Component {
         size={size}
         position={{ top, left }}
         sprite={this.state.expresed ? ship1 : ship2 } >
-
       </Square>
     )
   }
