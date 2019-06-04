@@ -128,7 +128,6 @@ export default class Game extends Component {
 
     handlePlayerCollision = () => {
         this.state.colidable && this.resetGame({...this.state,lifes: this.state.lifes - 1,colidable: false});
-
         setTimeout( () => this.setState({colidable: true}) ,timeRespawn)
 
     }
@@ -254,9 +253,9 @@ export default class Game extends Component {
 
             lifes,
             colidable
-        });
+        },event => lifes > 0 ? this.startGame() : this.props.finishGame(playerScore) )
         // restart game
-        this.startGame();
+
     }
 
     handleDebugToggle = () => {

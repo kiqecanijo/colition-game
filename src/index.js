@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Game } from 'containers'
 import FacebookLogin from 'react-facebook-login'
-import {Intro,Form} from 'components'
+import {Intro,Form,Top} from 'components'
 import {entrypoint,encode,cleanText} from 'Utils'
 import styled from 'styled-components'
 
@@ -14,17 +14,13 @@ const minor = width > height ? height : width
 
 const Div = styled.div`
   text-align:center;
-
 `
 
 class Engine extends Component {
-
   state = {
     user: false,
-    ready: false,
     data: false
   }
-
   responseFacebook (res) {
     res.id && fetch(entrypoint, {
       method: 'POST',
@@ -42,12 +38,32 @@ class Engine extends Component {
     })
     .then(res => res.json())
     .then(res => {
+      console.log(res);
       this.setState({ user: res })
     })
   }
 
   handleFormResponse(res){
-    this.setState(prev => ({data:res}),event => console.log(this.state))
+    this.setState(prev => ({user:res}),event => console.log(this.state))
+  }
+
+  finishGame(playerScore){
+    this.setState(prev => ({user:{...prev.user,score:playerScore} }))
+    fetch(entrypoint, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=ISO-8859-1'
+      },
+      body: encode({
+        user_id: this.state.user.user_id,
+        action: 'endGame',
+        mistakes: 1,
+        startTime: new Date,
+        score: playerScore,
+        cards: null
+      })
+    })
   }
 
   render () {
@@ -63,13 +79,11 @@ class Engine extends Component {
             isMobile={false}
             callback={this.responseFacebook.bind(this)}
             />
-
-
-        </Intro>}
-
-
-        {this.state.user && !this.state.user.phone && !this.state.data && <Form formResponse={this.handleFormResponse.bind(this)} user={this.state.user}/>}
-        {this.state.user && this.state.user.phone && <Game boardSize={8} playerSize={minor / 10} />}
+        </Intro>
+      }
+        {this.state.user && !this.state.user.phone && <Form formResponse={this.handleFormResponse.bind(this)} user={this.state.user}/>}
+        {this.state.user && this.state.user.phone && !this.state.user.score && <Game boardSize={8} finishGame={this.finishGame.bind(this)} playerSize={minor / 10} />}
+        {this.state.user && this.state.user.phone && this.state.user.score && <Top user={this.state.user} top={this.state.user.top} /> }
       </Div>
     )
   }

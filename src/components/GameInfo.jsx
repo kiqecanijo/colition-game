@@ -16,7 +16,7 @@ const GameInfo = ({
     return (
       <div style={infoStyle}>
         <p>Time: {timeElapsed}</p>
-        <p>Score: {playerScore}</p>
+        <p>Score: {Math.round(playerScore)}</p>
         <p>High Score: {highScore}</p>
         <p>Lifes: {lifes}</p>
 
