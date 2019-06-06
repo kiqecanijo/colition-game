@@ -8,3 +8,4 @@ export Control from './Control';
 export Intro from './Intro';
 export Form from './Form';
 export Top from './Top';
+export GameButton from './GameButton';
