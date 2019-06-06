@@ -15,7 +15,6 @@ display:flex;
 font-size: 30px;
 font-weight: 800;
 text-align:center;
-
 `
 const Thanks = styled.h1`
 font-size: 50px;
@@ -28,11 +27,10 @@ font-weight: 900;
 text-align:left;
 color:#d49a18;
 `
-
 const Td = styled.td`
   text-align:center;
   font-size:24px;
-  width: 200px;
+  max-width: 200px;
 `
 const Th = styled(Td)
 
@@ -49,6 +47,7 @@ const Mid = styled.div`
 `
 
 const Top = props => {
+  const top = [...props.top.filter(el => el.name != props.user.name),props.user]
   return (
     <Div>
       <You>
@@ -57,32 +56,33 @@ const Top = props => {
         </Mid>
         <Mid>
           <Thanks>
-        ¡Gracias por jugar!
+            ¡Gracias por jugar!
             <YouScore>
             Tus<br/>Puntaje: {props.user.score}
               <br/>
-            Tu<br/>actual posición : {props.top.filter(el => el.score > 0 && el.start_time > 0).map(el => el.name).indexOf(props.user.name) + 1}
+            Tu<br/>actual posición : {top.filter(el => el.score > 0 && el.start_time > 0).map(el => el.name).indexOf(props.user.name) + 1}
             </YouScore>
           </Thanks>
         </Mid>
-
       </You>
-
       <Thanks>¡Las puntuaciones más altas!</Thanks>
-      <table>
+      <table style={{borderCollapse:'separate',borderSpacing:'20px 20px',margin:'auto'}}>
         <tbody>
           <tr>
             <th>posición </th>
             <th> </th>
-            <th>Nombre </th>
-            <th > Puntaje </th>
+            <th style={{color:'gold'}}>Jugador </th>
+              <th style={{color:'gold'}}>Puntuación </th>
           </tr>
-          {props.top.filter(el => el.score > 0 && el.start_time > 0).map((user, index) =>
+          {top
+            .sort((a,b) => a > b)
+            .filter(el => el.score > 0 && el.start_time > 0)
+            .map((usr, index) =>
             <tr>
               <Td style={{ color: index == 0 && 'gold' || index == 1 && 'silver' || index == 2 && 'orange' }} > {index + 1 }</Td>
-              <Td colspan="2"> <Img src={user.photo}/></Td>
-              <Td colspan="2">{user.name}</Td>
-              <Td >{user.score}</Td>
+              <Td colspan="2"> <Img src={usr.photo}/></Td>
+              <Td style={{color:'#394ba2',backgroundColor:'white'}}  colspan="2">{usr.name}</Td>
+              <Td style={{color:'#394ba2',backgroundColor:'white'}}  >{usr.score}</Td>
             </tr>
           )}
         </tbody>

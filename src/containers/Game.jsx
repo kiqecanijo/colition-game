@@ -238,19 +238,9 @@ export default class Game extends Component {
         if (playerScore > globalHighScore) {
             this.updateGlobalHighScore(playerScore);
         }
-        // reset state
-        /*this.setState({
-            ...getDefaultState({ boardSize , playerSize, highScore }),
-            // persist debug state and high scores
-            debug,
-            highScore: playerScore > highScore ? playerScore : highScore,
-            globalHighScore,
-            lifes
-        });*/
 
         this.setState({
-            // persist debug state and high scores
-
+      
             lifes,
             colidable
         },event => lifes > 0 ? this.startGame() : this.props.finishGame(playerScore) )
