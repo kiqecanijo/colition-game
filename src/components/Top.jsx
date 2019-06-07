@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import jaguar from '../sprites/jaguar-score.png'
+import ship from '../sprites/ship2.png'
 
 const Div = styled.div`
  max-width: 800px;
@@ -24,8 +25,9 @@ text-align:center
 const YouScore = styled.h1`
 font-size: 30px;
 font-weight: 900;
-text-align:left;
+text-align:center;
 color:#d49a18;
+line-height: 0px;
 `
 const Td = styled.td`
   text-align:center;
@@ -48,19 +50,21 @@ const Mid = styled.div`
 
 const Top = props => {
   const top = [...props.top.filter(el => el.name != props.user.name),props.user]
+  console.log(top)
   return (
     <Div>
       <You>
         <Mid>
-          <img src={jaguar}/>
+          <img style={{right:'0px',bottom:'0px',position:'absolute'}} src={jaguar}/>
         </Mid>
         <Mid>
           <Thanks>
             ¡Gracias por jugar!
             <YouScore>
-            Tus<br/>Puntaje: {props.user.score}
-              <br/>
-            Tu<br/>actual posición : {top.filter(el => el.score > 0 && el.start_time > 0).map(el => el.name).indexOf(props.user.name) + 1}
+              <p style={{fontSize:'60px'}}>
+            <img style={{width:'100px',transform: 'rotate(270deg)',verticalAlign:'sub'}} src={ship}/>
+             {props.user.score}</p>
+            Tus Puntos
             </YouScore>
           </Thanks>
         </Mid>
@@ -75,8 +79,8 @@ const Top = props => {
               <th style={{color:'gold'}}>Puntuación </th>
           </tr>
           {top
-            .sort((a,b) => a > b)
-            .filter(el => el.score > 0 && el.start_time > 0)
+            .sort((a,b) => a.score > b.score)
+            .filter(el => el.score > 0 && el.start_time >= 0)
             .map((usr, index) =>
             <tr>
               <Td style={{ color: index == 0 && 'gold' || index == 1 && 'silver' || index == 2 && 'orange' }} > {index + 1 }</Td>

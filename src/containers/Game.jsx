@@ -49,7 +49,8 @@ const getDefaultState = ({ boardSize, playerSize, highScore = 0 }) => {
     colidable: true,
     user:{
       score:false,
-    }
+    },
+    ready:false
   }
 };
 
@@ -297,23 +298,28 @@ export default class Game extends Component {
     return (
       <div style={this.style()}>
 
-        <Modal>
-          <img style={{maxWidth:'300px',width:'100%'}} src={careful} />
-          <p>
-          <b>Instrucciones</b><br/>
-            1.- Para jugar debes dar clic en el siguiente enlace: URL al juego<br/>
-            2.- Inicia sesión con Facebook para poder jugar.<br/>
-            3.- Utiliza las fechas para evitar que las naves golpeen a Jaguarete<br/>
-            4.- ¡Sólo tienes una oportunidad para lograr el mayor puntaje posible!<br/>
-            5.- Ganarán las 3 primeras personas en alcanzar los puntajes más altos.<br/>
-            6.- Tienes a partir de este momento y hasta el sábado 15 de junio a las<br/>
-          23:59 hrs. para participar.<br/>
-            Conoce más de la dinámica dando clic
-            <a style={{color:'gold'}} href='https://www.facebook.com/NutriBabyMexico/app/171841683292560/' target="_blank"> aquí</a>.
-          </p>
+        {!this.state.ready &&
+          <Modal>
+            <img style={{maxWidth:'300px',width:'100%'}} src={careful} />
+            <p>
+            <b>Instrucciones</b><br/>
+              1.- Para jugar debes dar clic en el siguiente enlace: URL al juego<br/>
+              2.- Inicia sesión con Facebook para poder jugar.<br/>
+              3.- Utiliza las fechas para evitar que las naves golpeen a Jaguarete<br/>
+              4.- ¡Sólo tienes una oportunidad para lograr el mayor puntaje posible!<br/>
+              5.- Ganarán las 3 primeras personas en alcanzar los puntajes más altos.<br/>
+              6.- Tienes a partir de este momento y hasta el sábado 15 de junio a las<br/>
+            23:59 hrs. para participar.<br/>
+              Conoce más de la dinámica dando clic
+              <a style={{color:'gold'}} href='https://www.facebook.com/NutriBabyMexico/app/171841683292560/' target="_blank"> aquí</a>.
+            </p>
 
-          <GameButton / >
-        </Modal>
+            <GameButton callback={res => {
+                  this.setState(prev => ({ready: true}),this.startGame())
+
+              }}>¡ A jugar !</GameButton>
+          </Modal>
+        }
         {this.state.lifes > 0 && <GameInfo
           playerScore={playerScore}
           timeElapsed={timeElapsed}

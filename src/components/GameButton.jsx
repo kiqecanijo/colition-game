@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Component} from 'react'
 import styled from 'styled-components'
 import redButton from '../sprites/red-button.png'
 
@@ -13,15 +13,15 @@ height: 81px;
   background-repeat:no-repeat;
   font-weight:bold;
   cursor:pointer;
-
 `
 
-const GameButton = props => {
-  return(
-    <ComponentStyle  >{props.children}</ComponentStyle>
-  )
+
+class GameButton extends Component {
+  render(){
+    return(
+      <ComponentStyle  onClick={this.props.callback}>{this.props.children}</ComponentStyle>
+    )
+  }
 }
-
-
 
 export default GameButton
