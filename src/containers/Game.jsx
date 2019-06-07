@@ -119,13 +119,13 @@ export default class Game extends Component {
     // check walls
     switch (dirObj.dir) {
       case UP:
-      if (top <= player) return;
+      if (top <= 2* player) return;
       break;
       case DOWN:
       if (top >= maxDim - 2*player) return;
       break;
       case LEFT:
-      if (left <= player) return;
+      if (left <= 2* player) return;
       break;
       case RIGHT:
       if (left >= maxDim - 2*player) return;
@@ -314,7 +314,7 @@ export default class Game extends Component {
               <a style={{color:'gold'}} href='https://www.facebook.com/NutriBabyMexico/app/171841683292560/' target="_blank"> aquí</a>.
             </p>
 
-            <GameButton callback={res => {
+            <GameButton color={'red'} callback={res => {
                   this.setState(prev => ({ready: true}),this.startGame())
 
               }}>¡ A jugar !</GameButton>

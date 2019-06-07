@@ -1,6 +1,9 @@
 import React,{Component} from 'react'
 import styled from 'styled-components'
 import {entrypoint,encode,cleanText} from '../Utils'
+import careful from '../sprites/cuidado.png'
+
+
 
 
 const inputStyles = {
@@ -12,6 +15,7 @@ const inputStyles = {
   fontSize: '13px',
   margin: '5px'
 }
+
 
 const Checkbox = styled.input`
 width:20px;
@@ -74,10 +78,12 @@ class Form extends Component {
     })
   }
 
-  render(){
+  render() {
     return(
       (
-        <form onSubmit={this.sumbitForm.bind(this)}>
+        <form onSubmit={this.sumbitForm.bind(this)} style={{color:'white',fontSize:'30px',fontFamily:'nunito'}}>
+          <img style={{maxWidth:'300px',width:'100%'}} src={careful} />
+
           <p
             className={'bold'}>Regístrate</p>
           <input
