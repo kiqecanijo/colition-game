@@ -1,10 +1,7 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
-import {entrypoint,encode,cleanText} from '../Utils'
+import { entrypoint, encode, cleanText } from '../Utils'
 import careful from '../sprites/cuidado.png'
-
-
-
 
 const inputStyles = {
   padding: '15px',
@@ -15,7 +12,6 @@ const inputStyles = {
   fontSize: '13px',
   margin: '5px'
 }
-
 
 const Checkbox = styled.input`
 width:20px;
@@ -43,8 +39,7 @@ cursor:pointer;
 `
 
 class Form extends Component {
-
-  constructor(props){
+  constructor (props) {
     super(props)
     this.state = {
       user: props.user
@@ -64,25 +59,25 @@ class Form extends Component {
         user_id: this.state.user.user_id,
         action: 'complete',
         full_name: this.state.user.name
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, ''),
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, ''),
         phone: this.state.user.phone,
         email: this.state.user.email,
         full_email: this.state.user.email
       })
     })
-    .then(res => res.json())
-    .then(response => {
-      response.user_id &&
+      .then(res => res.json())
+      .then(response => {
+        response.user_id &&
       this.props.formResponse(response)
-    })
+      })
   }
 
-  render() {
-    return(
+  render () {
+    return (
       (
-        <form onSubmit={this.sumbitForm.bind(this)} style={{color:'white',fontSize:'30px',fontFamily:'nunito'}}>
-          <img style={{maxWidth:'300px',width:'100%'}} src={careful} />
+        <form onSubmit={this.sumbitForm.bind(this)} style={{ color: 'white', fontSize: '30px', fontFamily: 'nunito' }}>
+          <img style={{ maxWidth: '300px', width: '100%' }} src={careful} />
 
           <p
             className={'bold'}>Regístrate</p>
@@ -98,7 +93,7 @@ class Form extends Component {
               event.persist()
               this.setState(prevState => ({ user: { ...prevState.user, name: event.target.value } }))
             }}
-            />
+          />
           <br />
           {!this.state.user.name && 'ingrese un nombre válido'}
           <br/>
@@ -114,7 +109,7 @@ class Form extends Component {
               event.persist()
               this.setState(prevState => ({ user: { ...prevState.user, phone: event.target.value } }))
             }}
-            />
+          />
           <br/>
           {this.state.user.phone && this.state.user.phone !== null && this.state.user.phone.length < 8 && 'Introduce un teléfono válido'}
           <br />
@@ -130,25 +125,25 @@ class Form extends Component {
               event.persist()
               this.setState(prevState => ({ user: { ...prevState.user, email: event.target.value } }))
             }}
-            />
+          />
           <br />
           {!this.state.user.email && 'ingrese un email válido'}
           <br />
           <Checkbox type="checkbox" checked={this.state.checked} onChange={ event => this.setState(prevState => ({ checked: true })) }/>
           *Aceptas los <a target="_blank" href="https://www.facebook.com/NutriBabyMexico/app/171841683292560/" className="gold">términos de privacidad</a>
-        <br/>
-        <br/>
+          <br/>
+          <br/>
 
-        <Button
-          disabled={
-            !this.state.user.name ||
+          <Button
+            disabled={
+              !this.state.user.name ||
             (this.state.user.phone !== null
               ? this.state.user.phone.length < 8
               : !this.state.user.phone) ||
               !this.state.user.email ||
               !this.state.checked
             }
-            >Siguiente
+          >Siguiente
           </Button>
 
         </form>
