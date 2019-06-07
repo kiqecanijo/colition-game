@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import careful from '../sprites/cuidado.png'
 import padre from '../sprites/padre.png'
@@ -26,44 +26,35 @@ line-height: 25px;
 `
 
 const Intro = props => {
-  return(
+  return (
     <Div>
-      <img style={{maxWidth:'300px',width:'100%'}} src={careful} />
+      <img style={{ maxWidth: '300px', width: '100%' }} src={careful} />
 
       <p>
         ¡Descubre a Jaguarete con el menor número de <br/>
       movimientos posibles!<br/><br/>
-    <b>¿Estás listo para el reto?</b>
-  </p>
+        <b>¿Estás listo para el reto?</b>
+      </p>
 
-<Places>
-  <p className={'gold'}>Primer lugar:</p>
-  <p>Certificado de regalo con
-    $500 en una prestigiada
-    tienda departamental y
-    NutriBaby 3 Stick Pack</p>
-</Places>
-<Places>
-  <p className={'gold'}>Segundo lugar:</p>
-  <p>Certificado de regalo
-    con $300 en una
-    prestigiada tienda
-    departamental y
-    NutriBaby 3 Stick Pack</p>
-</Places>
-<Places>
-  <p className={'gold'}>Tercer lugar:</p>
-  <p>Kit deportivo y
-    NutriBaby 3
-    Stick Pack</p>
-</Places>
-{props.children}
-<br/>
-<img  style={{maxWidth:'550px',width:'100%'}} src={padre} />
-
-</Div>
-)
-
+      <Places>
+        <p className={'gold'}>Primer lugar:</p>
+        <p>Certificado de regalo con $500 en una prestigiada tienda departamental y NutriBaby® 3 Stick Pack </p>
+      </Places>
+      <Places>
+        <p className={'gold'}>Segundo lugar:</p>
+        <p>Certificado de regalo con $300 en una prestigiada tienda departamental y NutriBaby® 3 Stick Pack</p>
+      </Places>
+      <Places>
+        <p className={'gold'}>Tercer lugar:</p>
+        <p>Kit deportivo y NutriBaby® 3 Stick Pack</p>
+      </Places>
+      {props.children}
+      <br/>
+      <div style={{ position: 'fixed', width: '100%', bottom: '0px', left: '0px' }}>
+        <img style={{ maxWidth: '550px', width: '100%', margin: 'auto' }} src={padre} />
+      </div>
+    </Div>
+  )
 }
 
 export default Intro

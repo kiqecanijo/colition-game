@@ -48,7 +48,9 @@ position:relative
 `
 
 const Top = props => {
-  const top = [...props.top.filter(el => el.name != props.user.name), props.user]
+  console.log(props.user)
+  const user = { name: props.user.name, score: props.user.score, start_time: props.user.start_time, photo: props.user.photo }
+  const top = [...props.top.filter(el => el.name != user.name), user]
   return (
     <Div>
       <You>
@@ -61,7 +63,7 @@ const Top = props => {
             <YouScore>
               <p style={{ fontSize: '60px' }}>
                 <img style={{ width: '100px', transform: 'rotate(270deg)', verticalAlign: 'sub' }} src={ship}/>
-                {props.user.score}</p>
+                {user.score}</p>
               Tus Puntos
             </YouScore>
           </Thanks>
@@ -76,8 +78,9 @@ const Top = props => {
             <th style={{ color: 'gold' }}>Jugador </th>
             <th style={{ color: 'gold' }}>Puntuación </th>
           </tr>
+          {console.log(top)}
           {top
-            .sort((a, b) => a.score > b.score)
+            .sort((a, b) => Number(a.score) < Number(b.score) ? 1 : -1)
             .filter(el => el.score > 0 && el.start_time >= 0)
             .map((usr, index) =>
               <tr>

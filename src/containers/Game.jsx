@@ -8,7 +8,7 @@ import careful from '../sprites/cuidado.png'
 const timeRespawn = 2000
 
 const Modal = styled.div`
-background-color:rgba(0,0,0,0.5);
+background-color:rgba(0,0,0,0.85);
 position: fixed;
 width: 100%;
 height: 100%;
@@ -20,6 +20,8 @@ padding:40px;
 font-size:24px;
 font-family: nunito;
 color:white;
+padding:0px
+
 `
 
 const getDefaultState = ({ boardSize, playerSize, highScore = 0 }) => {
@@ -119,13 +121,13 @@ export default class Game extends Component {
     // check walls
     switch (dirObj.dir) {
       case UP:
-      if (top <= 2* player) return;
+      if (top <= player) return;
       break;
       case DOWN:
       if (top >= maxDim - 2*player) return;
       break;
       case LEFT:
-      if (left <= 2* player) return;
+      if (left <= player) return;
       break;
       case RIGHT:
       if (left >= maxDim - 2*player) return;
@@ -266,10 +268,6 @@ export default class Game extends Component {
   }
 
 
-  test(){
-    console.log('oli');
-  }
-
   handleDebugToggle = () => {
     this.setState({
       debug: this.debug.checked
@@ -300,7 +298,9 @@ export default class Game extends Component {
 
         {!this.state.ready &&
           <Modal>
-            <img style={{maxWidth:'300px',width:'100%'}} src={careful} />
+            <br/>
+            <br/>
+            <br/>
             <p>
             <b>Instrucciones</b><br/>
               1.- Para jugar debes dar clic en el siguiente enlace: URL al juego<br/>
@@ -311,7 +311,7 @@ export default class Game extends Component {
               6.- Tienes a partir de este momento y hasta el sábado 15 de junio a las<br/>
             23:59 hrs. para participar.<br/>
               Conoce más de la dinámica dando clic
-              <a style={{color:'gold'}} href='https://www.facebook.com/NutriBabyMexico/app/171841683292560/' target="_blank"> aquí</a>.
+              <a style={{color:'gold'}} href='https://centralmedia.com.mx/facebook/nutribaby/' target="_blank"> aquí</a>.
             </p>
 
             <GameButton color={'red'} callback={res => {

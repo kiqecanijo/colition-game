@@ -38,13 +38,12 @@ class Engine extends Component {
     })
     .then(res => res.json())
     .then(res => {
-      console.log(res);
       this.setState({ user: res })
     })
   }
 
   handleFormResponse(res){
-    this.setState(prev => ({user:res}),event => console.log(this.state))
+    this.setState(prev => ({user:res}))
   }
 
   finishGame(playerScore){
