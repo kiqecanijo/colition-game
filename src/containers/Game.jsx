@@ -361,6 +361,7 @@ export default class Game extends Component {
       }
 
       componentDidMount() {
+          window.scrollTo(0,document.body.scrollHeight)
         //this.startGame();
       }
 

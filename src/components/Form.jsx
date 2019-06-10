@@ -89,6 +89,11 @@ class Form extends Component {
             title="inserte un nombre válido"
             placeholder="Nombre que aparece en tu  identificación oficial"
             value={this.state.user.name}
+            onKeyDown={event => {
+              event.key === ' ' && this.setState(prev => ({ user: { ...prev.user, name: prev.user.name + ' ' } }))
+            }
+            }
+
             onChange={event => {
               event.persist()
               this.setState(prevState => ({ user: { ...prevState.user, name: event.target.value } }))

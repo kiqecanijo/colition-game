@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import jaguar from '../sprites/jaguar-score.png'
 import ship from '../sprites/ship2.png'
 
+const smallVersion = window.innerWidth <= 550
+
 const Div = styled.div`
 max-width: 800px;
 text-align:center;
@@ -17,7 +19,7 @@ font-weight: 800;
 text-align:center;
 `
 const Thanks = styled.h1`
-font-size: 50px;
+font-size: ${smallVersion ? 29 : 50}px;
 font-weight: 900;
 text-align:center;
 margin:0px
@@ -47,16 +49,17 @@ display: block;
 text-align:center;
 position:relative
 `
-
+setTimeout(function () {
+  window.scrollTo(0, 0)
+}, 250)
 const Top = props => {
-  console.log(props.user)
   const user = { name: props.user.name, score: props.user.score, start_time: props.user.start_time, photo: props.user.photo }
   const top = [...props.top.filter(el => el.name != user.name), user]
   return (
     <Div>
       <You>
         <Mid>
-          <img style={{ right: '0px', top: '20%', position: 'absolute' }} src={jaguar}/>
+          <img style={{ width: `${smallVersion ? '100%' : 'auto'}`, right: '0px', top: '20%', position: 'absolute' }} src={jaguar}/>
         </Mid>
         <Mid>
           <Thanks>
@@ -64,7 +67,7 @@ const Top = props => {
             ¡Gracias por jugar!
             <YouScore>
 
-              <p style={{ fontSize: '60px' }}>
+              <p style={{ fontSize: '60px', margin: '0px', fontSize: `${smallVersion ? 45 : 60}px` }}>
                 <p style={{ fontSize: '30px', margin: '0px' }}>Tus Puntos</p>
                 <img style={{ width: '100px', transform: 'rotate(270deg)', verticalAlign: 'middle' }} src={ship}/>
                 {user.score}</p>
@@ -78,18 +81,17 @@ const Top = props => {
         <tbody>
           <tr>
             <th>posición </th>
-            <th> </th>
+            {!smallVersion && <th> </th>}
             <th style={{ color: 'gold' }}>Jugador </th>
             <th style={{ color: 'gold' }}>Puntuación </th>
           </tr>
-          {console.log(top)}
           {top
             .sort((a, b) => Number(a.score) < Number(b.score) ? 1 : -1)
             .filter(el => el.score > 0 && el.start_time >= 0)
             .map((usr, index) =>
               <tr>
                 <Td style={{ color: index == 0 && 'gold' || index == 1 && 'silver' || index == 2 && 'orange' }} > {index + 1 }</Td>
-                <Td colspan="2"> <Img src={usr.photo}/></Td>
+                {!smallVersion && <Td colspan="2"> <Img src={usr.photo}/></Td>}
                 <Td style={{ color: '#394ba2', backgroundColor: 'white' }} colspan="2">{usr.name}</Td>
                 <Td style={{ color: '#394ba2', backgroundColor: 'white' }} >{usr.score}</Td>
               </tr>
