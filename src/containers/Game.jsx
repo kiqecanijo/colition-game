@@ -8,7 +8,7 @@ import careful from '../sprites/cuidado.png'
 const timeRespawn = 2000
 
 const Modal = styled.div`
-background-color:rgba(0,0,0,0.1);
+background-color:rgba(0,0,0,0);
 position: fixed;
 width: 100%;
 height: 100%;
@@ -298,10 +298,8 @@ export default class Game extends Component {
 
         {!this.state.ready &&
           <Modal>
-            <br/>
-            <br/>
-            <br/>
-            <p>
+
+            <p style={{fontSize: window.innerWidth < 600 ? '20px': '26px'}} >
             <b>Instrucciones</b><br/>
 
               1.- Utiliza las fechas para evitar que las naves golpeen a Jaguarete<br/>
@@ -319,14 +317,16 @@ export default class Game extends Component {
               }}>¡ A jugar !</GameButton>
           </Modal>
         }
-        {this.state.lifes > 0 && <GameInfo
+        {this.state.ready &&
+          this.state.lifes > 0 && <GameInfo
           playerScore={playerScore}
           timeElapsed={timeElapsed}
           highScore={highScore}
           lifes={lifes}
           globalHighScore={globalHighScore} />}
 
-          {!this.state.user.score &&
+          {this.state.ready &&
+            !this.state.user.score &&
             this.state.lifes > 0 &&
 
             <Board dimension={board * player}>
@@ -350,7 +350,8 @@ export default class Game extends Component {
 
           }
 
-          {this.state.lifes > 0 && <Control
+          {this.state.ready &&
+            this.state.lifes > 0 && <Control
             position={playerPos}
             handlePlayerMovement={this.handlePlayerMovement} />}
 
