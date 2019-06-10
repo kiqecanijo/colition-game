@@ -19,14 +19,15 @@ text-align:center;
 const Thanks = styled.h1`
 font-size: 50px;
 font-weight: 900;
-text-align:center
+text-align:center;
+margin:0px
 `
 const YouScore = styled.h1`
 font-size: 30px;
 font-weight: 900;
 text-align:center;
 color:#d49a18;
-line-height: 0px;
+line-height: 50px;
 `
 const Td = styled.td`
 text-align:center;
@@ -55,16 +56,19 @@ const Top = props => {
     <Div>
       <You>
         <Mid>
-          <img style={{ right: '0px', bottom: '0px', position: 'absolute' }} src={jaguar}/>
+          <img style={{ right: '0px', top: '20%', position: 'absolute' }} src={jaguar}/>
         </Mid>
         <Mid>
           <Thanks>
+            <br/>
             ¡Gracias por jugar!
             <YouScore>
+
               <p style={{ fontSize: '60px' }}>
-                <img style={{ width: '100px', transform: 'rotate(270deg)', verticalAlign: 'sub' }} src={ship}/>
+                <p style={{ fontSize: '30px', margin: '0px' }}>Tus Puntos</p>
+                <img style={{ width: '100px', transform: 'rotate(270deg)', verticalAlign: 'middle' }} src={ship}/>
                 {user.score}</p>
-              Tus Puntos
+
             </YouScore>
           </Thanks>
         </Mid>

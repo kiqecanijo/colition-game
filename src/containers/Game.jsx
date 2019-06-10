@@ -8,7 +8,7 @@ import careful from '../sprites/cuidado.png'
 const timeRespawn = 2000
 
 const Modal = styled.div`
-background-color:rgba(0,0,0,0.85);
+background-color:rgba(0,0,0,0.1);
 position: fixed;
 width: 100%;
 height: 100%;
@@ -303,12 +303,11 @@ export default class Game extends Component {
             <br/>
             <p>
             <b>Instrucciones</b><br/>
-              1.- Para jugar debes dar clic en el siguiente enlace: URL al juego<br/>
-              2.- Inicia sesión con Facebook para poder jugar.<br/>
-              3.- Utiliza las fechas para evitar que las naves golpeen a Jaguarete<br/>
-              4.- ¡Sólo tienes una oportunidad para lograr el mayor puntaje posible!<br/>
-              5.- Ganarán las 3 primeras personas en alcanzar los puntajes más altos.<br/>
-              6.- Tienes a partir de este momento y hasta el sábado 15 de junio a las<br/>
+
+              1.- Utiliza las fechas para evitar que las naves golpeen a Jaguarete<br/>
+              2.- ¡Sólo tienes una oportunidad para lograr el mayor puntaje posible!<br/>
+              3.- Ganarán las 3 primeras personas en alcanzar los puntajes más altos.<br/>
+              4.- Tienes a partir de este momento y hasta el sábado 15 de junio a las<br/>
             23:59 hrs. para participar.<br/>
               Conoce más de la dinámica dando clic
               <a style={{color:'gold'}} href='https://centralmedia.com.mx/facebook/nutribaby/' target="_blank"> aquí</a>.

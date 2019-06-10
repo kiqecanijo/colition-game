@@ -130,7 +130,7 @@ class Form extends Component {
           {!this.state.user.email && 'ingrese un email válido'}
           <br />
           <Checkbox type="checkbox" checked={this.state.checked} onChange={ event => this.setState(prevState => ({ checked: true })) }/>
-          *Aceptas los <a target="_blank" href="https://www.facebook.com/NutriBabyMexico/app/171841683292560/" className="gold">términos de privacidad</a>
+          *Aceptas los <a target="_blank" href="https://centralmedia.com.mx/facebook/nutribaby/" className="gold">términos de privacidad</a>
           <br/>
           <br/>
 

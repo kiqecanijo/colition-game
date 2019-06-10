@@ -50,9 +50,7 @@ const Intro = props => {
       </Places>
       {props.children}
       <br/>
-      <div style={{ position: 'fixed', width: '100%', bottom: '0px', left: '0px' }}>
-        <img style={{ maxWidth: '550px', width: '100%', margin: 'auto' }} src={padre} />
-      </div>
+      <img style={{ maxWidth: '550px', width: '100%', margin: 'auto' }} src={padre} />
     </Div>
   )
 }
